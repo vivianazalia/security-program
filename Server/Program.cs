@@ -7,6 +7,8 @@ namespace Server
 {
     class Program
     {
+        Security security;
+
         static void Main(string[] args)
         {
             TcpListener tcpListener = new TcpListener(System.Net.IPAddress.Any, 8888);
@@ -17,6 +19,7 @@ namespace Server
                 Console.WriteLine("Waiting for a connection...");
                 TcpClient client = tcpListener.AcceptTcpClient();
                 Console.WriteLine("Client Accepted");
+
                 NetworkStream stream = client.GetStream();
 
                 StreamReader read = new StreamReader(stream);
@@ -46,5 +49,32 @@ namespace Server
                 }
             }
         }
-    }
+
+        class Security
+        {
+            string publicServerKeyPath = @"D:\Project\security-program\Server\Keypath\public.key";
+            string privateServerKeyPath = @"D:\Project\security-program\Server\Keypath\private.key";
+
+            public void GenerateKey()
+            {
+                ExpressEncription.RSAEncription.MakeKey(publicServerKeyPath, privateServerKeyPath);
+            }
+
+            public void SendPublicKeyToClient(TcpClient client)
+            {
+                NetworkStream stream = client.GetStream();
+                StreamWriter sr = new StreamWriter(stream);
+                sr.Write(publicServerKeyPath);
+            }
+
+            public void Encrypt()
+            {
+
+            }
+
+            public void Decrypt()
+            {
+
+            }
+        }
 }
