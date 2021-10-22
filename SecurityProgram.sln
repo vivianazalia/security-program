@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityProgram", "SecurityProgram\SecurityProgram.csproj", "{9A7232DD-B682-44A5-AAD6-8BD3366BD2A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{EE0E9D0E-ADB4-4D63-9663-7EA2169A7034}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{6E17E0EC-0D5B-40DC-81A4-8988843CE4EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A7232DD-B682-44A5-AAD6-8BD3366BD2A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7232DD-B682-44A5-AAD6-8BD3366BD2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7232DD-B682-44A5-AAD6-8BD3366BD2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7232DD-B682-44A5-AAD6-8BD3366BD2A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0E9D0E-ADB4-4D63-9663-7EA2169A7034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0E9D0E-ADB4-4D63-9663-7EA2169A7034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0E9D0E-ADB4-4D63-9663-7EA2169A7034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0E9D0E-ADB4-4D63-9663-7EA2169A7034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E17E0EC-0D5B-40DC-81A4-8988843CE4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E17E0EC-0D5B-40DC-81A4-8988843CE4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E17E0EC-0D5B-40DC-81A4-8988843CE4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E17E0EC-0D5B-40DC-81A4-8988843CE4EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B68D70C-25DA-431C-9DD4-723ECDFA0FA8}
+	EndGlobalSection
+EndGlobal
