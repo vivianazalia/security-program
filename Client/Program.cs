@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
-using ExpressEncription;
+using System.Xml.Serialization;
 
 namespace Client
 {
@@ -37,24 +38,47 @@ namespace Client
         }
     }
 
-    class Security
+    class Encryption
     {
-        string publicClientKeyPath = @"D:\Project\security-program\Client\Keypath\public.key";
-        string privateClientKeyPath = @"D:\Project\security-program\Client\Keypath\private.key";
+        private static RSACryptoServiceProvider csp = new RSACryptoServiceProvider(2048);
+        private RSAParameters publicKey;
+        private RSAParameters privateKey;
 
-        public void GenerateKey()
+        public Encryption()
         {
-            ExpressEncription.RSAEncription.MakeKey(publicClientKeyPath, privateClientKeyPath);
+            publicKey = csp.ExportParameters(false);
+            privateKey = csp.ExportParameters(true);
         }
 
-        public void Encrypt()
+        public string GetPublicKey()
         {
-
+            var sw = new StringWriter();
+            var xs = new XmlSerializer(typeof(RSAParameters));
+            xs.Serialize(sw, publicKey);
+            return sw.ToString();
         }
 
-        public void Decrypt()
+        public void SendPublicKeyToConnectedClient(NetworkStream stream)
         {
+            StreamWriter streamWriter = new StreamWriter(stream);
+            streamWriter.Write(GetPublicKey());
+        }
 
+        public string Encrypt(string plainText)
+        {
+            csp = new RSACryptoServiceProvider();
+            csp.ImportParameters(publicKey);
+            var data = Encoding.Unicode.GetBytes(plainText);
+            var chyper = csp.Encrypt(data, false);
+            return Convert.ToBase64String(chyper);
+        }
+
+        public string Decrypt(string chyperText)
+        {
+            var dataBytes = Convert.FromBase64String(chyperText);
+            csp.ImportParameters(privateKey);
+            var plainText = csp.Decrypt(dataBytes, false);
+            return Encoding.Unicode.GetString(plainText);
         }
     }
 }
